@@ -128,3 +128,5 @@ STATICFILES_DIRS =  (os.path.join(os.path.dirname(BASE_DIR), 'proyectoinfo/stati
 print(STATICFILES_DIRS)
 MEDIA_URL = '/media/'
 MEDIA_ROOT =  (os.path.join(os.path.dirname(BASE_DIR), 'proyectoinfo/media'),)
+
+#mas cosas
