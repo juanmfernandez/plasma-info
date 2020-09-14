@@ -17,7 +17,7 @@ import os
 #BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-print(BASE_DIR)
+print('BASE_DIR: ', BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'proyectoinfo.apps.blog',
+    'proyectoinfo.apps.users',
 ]
 
 MIDDLEWARE = [
@@ -126,8 +127,18 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS =  (os.path.join(os.path.dirname(BASE_DIR), 'proyectoinfo/static'),)
 # STATICFILES_DIRS =  (os.path.join(BASE_DIR, 'static/'),)
 #STATICFILES_DIRS = [ BASE_DIR / "static",  '/static/',]
-print(STATICFILES_DIRS)
+print('STATICFILES_DIRS: ', STATICFILES_DIRS)
 MEDIA_URL = '/media/'
 MEDIA_ROOT =  (os.path.join(os.path.dirname(BASE_DIR), 'proyectoinfo/media'),)
 
-#mas cosas
+#lo que sigue es para cuando esta alojado en el server
+"""
+
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+STATIC_ROOT = '/home/plasma-info/www/proyectoinfo/proyectoinfo/proyectoinfo/static/'
+MEDIA_ROOT =  '/home/plasma-info/www/proyectoinfo/proyectoinfo/proyectoinfo/media/'
+STATICFILES_DIRS = (
+    '/home/plasma-info/www/proyectoinfo/proyectoinfo/proyectoinfo/static/',
+)
+"""

@@ -17,8 +17,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from .apps.users import views
+from .settings import base
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('proyectoinfo.apps.blog.urls')),
-]
+    path('bienvenido/', views.bienvenido),
+    path('registrar', views.registrar),
+    path('login', views.login),
+    path('logout', views.logout),
+] + static(base.STATIC_URL, document_root=base.STATIC_ROOT)
