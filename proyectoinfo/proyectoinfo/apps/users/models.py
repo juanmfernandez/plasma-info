@@ -26,3 +26,13 @@ class Post(models.Model):
     class Meta:
 	    verbose_name = ("Post")
 	    verbose_name_plural = ("Posts")
+
+class Comentario(models.Model):
+    post = models.ForeignKey(Post, on_delete = models.CASCADE)
+    contenido = models.TextField()
+    autor = models.ForeignKey('auth.User', on_delete = models.CASCADE)
+    fecha_hora = models.DateTimeField(default = timezone.now)
+
+    class Meta:
+        verbose_name = ('Comentario')
+        verbose_name_plural = ('Comentarios')
