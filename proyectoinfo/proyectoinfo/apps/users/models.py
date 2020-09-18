@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from geoposition.fields import GeopositionField
 
 # Create your models here.
 
@@ -7,7 +8,7 @@ class CentroHabilitado(models.Model):
     nombre = models.CharField(max_length=50)
     mail = models.CharField(max_length=50)
     nro_tel = models.IntegerField(max_length=50)
-    direccion = models.CharField(max_length=50)
+    direccion = GeopositionField()
     horario_aten = models.CharField(max_length=50)
 
     class Meta:
