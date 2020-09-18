@@ -1,11 +1,42 @@
 
 <h2>Registrar usuario</h2>
-
+<form method="POST" class="formulario">
+    
+    <h1>Registrate</h1>
+     <div class="contenedor">
+     
+     <div class="input-contenedor">
+         <i class="fas fa-user icon"></i>
+         {{ form.username }}
+         
+         </div>
+         
+         <div class="input-contenedor">
+         <i class="fas fa-envelope icon"></i>
+         {{ form.password1 }}
+         
+         </div>
+         
+         <div class="input-contenedor">
+        <i class="fas fa-key icon"></i>
+         {{ form.password2 }}
+         
+         </div>
+         <input type="submit" value="Registrate" class="button">
+         <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+         <p>¿Ya tienes una cuenta?<a class="link" href="loginvista.html">Iniciar Sesion</a></p>
+     </div>
+    </form>
 <form method="POST">
-    {{ form.as_p }}
+
+	{{ form.username.help_text }}
+	{{ form.password1 }}
+	{{ form.password1.help_text }}
+	{{ form.password2 }}
+	{{ form.password2.help_text }}
     {% csrf_token %}
-    <button type="submit">Registrar</button>
 </form>
+
 
 <hr />
 

@@ -38,7 +38,7 @@ def login(request):
 				do_login(request, user)
 				return redirect('bienvenido/')
 
-	return render(request, 'login.html', {'form' : form})
+	return render(request, 'login.html', {'form' : form, 'div_clase' : 'test'},)
 
 
 def logout(request):

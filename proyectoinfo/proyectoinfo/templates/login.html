@@ -1,10 +1,40 @@
-<h2>Iniciar sesión</h2>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title></title> 
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/estilos_forms.css' %}">
+</head>  
+<body>
 
-<form method="POST">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <button type="submit">Login</button>
-</form>
+	<div class={{ div_clase }}></div>
 
-<hr />
-<a href="/registrar">Registrar usuario</a>
+<form method="POST" class="formulario">
+	{% csrf_token %}
+    <h1>Login</h1>
+     <div class="contenedor">
+
+        <div class="input-contenedor">
+        <i class="fas fa-envelope icon"></i>
+	        {{ form.username.errors }}
+	        {{ form.username.label_tag }}
+	        {{ form.username }}
+        </div>
+         
+        <div class="input-contenedor">
+		<i class="fas fa-key icon"></i>
+			{{ form.password.errors }}
+	        {{ form.password.label_tag }}
+        	{{ form.password }}
+        </div>
+        <input type="submit" value="Login" class="button">
+        <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+        <p>¿No tienes una cuenta? <a class="link" href="/registrar">Registrate </a></p>
+     </div>
+    </form>
+    
+</body>
+</html>
