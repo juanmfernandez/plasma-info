@@ -17,11 +17,11 @@ class CentroHabilitado(models.Model):
 class Post(models.Model):
     autor = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     contenido = models.TextField()
-	fecha_creacion = models.DateTimeField(default=timezone.now)
+    fecha_creacion = models.DateTimeField(default = timezone.now)
 
     def publicar(self):
-		self.fecha_publicacion = timezone.now()
-		self.save()
+        self.fecha_publicacion = timezone.now()
+        self.save()
 
     class Meta:
 	    verbose_name = ("Post")
