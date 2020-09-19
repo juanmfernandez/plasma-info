@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'proyectoinfo.apps.blog',
     'proyectoinfo.apps.users',
+    'geoposition',
 ]
 
 MIDDLEWARE = [
