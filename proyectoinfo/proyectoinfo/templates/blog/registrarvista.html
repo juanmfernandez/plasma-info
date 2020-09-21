@@ -1,0 +1,68 @@
+{% extends 'blog/index.html' %}
+{% load crispy_forms_tags %}
+{% block titulo %} Registrar usuario {% endblock titulo %}
+{% block contenido %}
+
+	<div class="col d-flex justify-content-center align-items-center">
+
+		<form method="POST" class="col-8" novalidate>
+			{% csrf_token %}
+			<div class="jumbotron">
+					<h1 class="mb-3">Nuevo creador de posts</h1>
+				<hr class="my-4">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<div class="input-group mb-3">
+						<div class="input-group-prepend">
+						    <span class="input-group-text">{{ autor_form.nombres.label }}</span>
+						  </div>
+						  {{ autor_form.nombres }}
+						  {{ autor_form.nombres.errors }}
+						</div>
+						</div>
+						<div class="form-group col-md-6">
+						<div class="input-group mb-3">
+						<div class="input-group-prepend">
+						    <span class="input-group-text">{{ autor_form.apellidos.label }}</span>
+						  </div>
+						  {{ autor_form.apellidos }}
+						  {{ autor_form.apellidos.errors }}
+						</div>
+					</div>
+			    </div>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="basic-addon1">{{ autor_form.email.label }}</span>
+				  </div>
+				  {{ autor_form.email }}
+				  {{ autor_form.email.errors }}
+				</div>
+
+				<label for="basic-url">Facebook</label>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="basic-addon3">facebook.com/</span>
+				  </div>
+				  {{ autor_form.facebook }}
+				 </div>
+				  {{ autor_form.facebook.errors }}
+				<label for="basic-url">{{ autor_form.instagram.label }}</label>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="basic-addon3">instagram.com/</span>
+				  </div>
+				  {{ autor_form.instagram }}
+				  
+				</div>
+				{{ autor_form.instagram.errors }}
+				<div class="mb-3">
+					{{ autor_form.donante }} {{ autor_form.donante.label }} 
+					{{ autor_form.donante.errors }}
+				</div>
+			<input type="submit" class="btn btn-info" value="Agregar">
+			
+		</form>
+	</div>
+
+{%endblock contenido%}
+    

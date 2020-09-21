@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'proyectoinfo.apps.blog',
     'proyectoinfo.apps.users',
     'geoposition',
+    'crispy_forms',
+    'import_export',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
