@@ -16,4 +16,5 @@ urlpatterns = [
     #path('<slug:slug>',detallePost, name='detallePost'), #Esta siempre va ultima.
     #path('detalle/<slug:pk>', DetalleNoticia.as_view(), name='detalle'),
     path('detalle/<slug:slug>',detallePost, name='detallePost'), #Esta siempre va ultima.
+    path('detalle/',blog, name='blog'),
 ]

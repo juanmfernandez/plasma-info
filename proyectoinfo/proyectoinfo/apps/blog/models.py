@@ -1,13 +1,14 @@
 from django.db import models
 from django.utils import timezone
 from ckeditor.fields import RichTextField #Esto me permite editar el post con ckeditor, mas configuraciones en settings/base
+from ..users.models import Usuario
 
 #Los modelos son una tabla en nuestra BD
 #Modelo de categoria para nuestros post (La categoria la crea el admin)
 
 class Noticia(models.Model):
 
-	autor = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+	autor = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 	titulo = models.CharField(max_length=200)
 	contenido = models.TextField()
 	fecha_creacion = models.DateTimeField(default=timezone.now)
@@ -79,5 +80,16 @@ class Post(models.Model):
     def __str__(self):
         return "{0} - {1} - {2} - {3} - {4}".format(self.titulo, self.autor, self.fecha_creacion, self.categoria ,self.verificado)
 
+class Comentario(models.Model):
+    post = models.ForeignKey(Post, on_delete = models.CASCADE)
+    contenido = models.TextField()
+    autor = models.ForeignKey(Autor, on_delete = models.CASCADE)
+    fecha_hora = models.DateTimeField(default = timezone.now)
 
+    def __str__(self):
+        return self.contenido
+
+    class Meta:
+        verbose_name = ('Comentario')
+        verbose_name_plural = ('Comentarios')
 

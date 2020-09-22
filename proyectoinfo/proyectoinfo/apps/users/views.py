@@ -36,7 +36,7 @@ def login(request):
 
 			if user is not None:
 				do_login(request, user)
-				return redirect('bienvenido/')
+				return redirect('/bienvenido')
 
 	return render(request, 'login.html', {'form' : form, 'div_clase' : 'test'},)
 

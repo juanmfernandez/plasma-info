@@ -76,15 +76,17 @@ def informacion(request):
     return render(request, 'blog/informacion.html')
 
 def detallePost(request,slug):
-    queryset= request.GET.get("buscar")
-    post = get_object_or_404(Post,slug = slug) #Si encuentra el objeto que lo traiga, sino muestra un 404 error como resultado
-    if queryset:
-        post = Post.objects.filter(
-                Q(titulo__icontains = queryset) | 
-                Q(descripcion__icontains = queryset)
-            ).distinct()
-    return render(request,'blog/post.html',{'detallePost':post})
-
+    if slug:
+        queryset= request.GET.get("buscar")
+        post = get_object_or_404(Post,slug = slug) #Si encuentra el objeto que lo traiga, sino muestra un 404 error como resultado
+        if queryset:
+            post = Post.objects.filter(
+                    Q(titulo__icontains = queryset) | 
+                    Q(descripcion__icontains = queryset)
+                ).distinct()
+        return render(request,'blog/post.html',{'detallePost':post})
+    else:
+        return render(request, 'blog/index.html',{'post':post})
 def crearAutor(request):
     if request.method == 'POST': #Para registrarse
         autor_form = AutorForm(request.POST)

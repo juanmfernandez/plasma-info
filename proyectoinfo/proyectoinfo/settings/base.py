@@ -42,11 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'proyectoinfo.apps.blog',
     'proyectoinfo.apps.users',
-    'geoposition',
+    'proyectoinfo.apps.centros',
+    #'geoposition',
     'crispy_forms',
     'import_export',
     'ckeditor',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -122,16 +125,15 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_ROOT= os.path.join(BASE_DIR,'proyectoinfo/static/')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS =  (os.path.join(os.path.dirname(BASE_DIR), 'proyectoinfo/static'),)
-# STATICFILES_DIRS =  (os.path.join(BASE_DIR, 'static/'),)
-#STATICFILES_DIRS = [ BASE_DIR / "static",  '/static/',]
+#STATICFILES_DIRS =  (os.path.join(BASE_DIR, 'static/'),)
 print('STATICFILES_DIRS: ', STATICFILES_DIRS)
+#STATICFILES_DIRS = [ BASE_DIR / "static",  '/static/',]
 MEDIA_URL = '/media/'
 MEDIA_ROOT =  (os.path.join(os.path.dirname(BASE_DIR), 'proyectoinfo/media'),)
 
@@ -146,3 +148,11 @@ STATICFILES_DIRS = (
     '/home/plasma-info/www/proyectoinfo/proyectoinfo/proyectoinfo/static/',
 )
 """
+
+from django.urls import reverse_lazy
+#from ..apps.users.models import Usuario
+
+AUTH_USER_MODEL = "users.Usuario"
+
+LOGIN_URL = reverse_lazy('login')
+LOGIN_REDIRECT_URL = reverse_lazy('lista')
