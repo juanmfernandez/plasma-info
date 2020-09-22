@@ -1,43 +1,98 @@
 
-<h2>Registrar usuario</h2>
-<form method="POST" class="formulario">
-    
-    <h1>Registrate</h1>
-     <div class="contenedor">
-     
-     <div class="input-contenedor">
-         <i class="fas fa-user icon"></i>
-         {{ form.username }}
-         
-         </div>
-         
-         <div class="input-contenedor">
-         <i class="fas fa-envelope icon"></i>
-         {{ form.password1 }}
-         
-         </div>
-         
-         <div class="input-contenedor">
-        <i class="fas fa-key icon"></i>
-         {{ form.password2 }}
-         
-         </div>
-         <input type="submit" value="Registrate" class="button">
-         <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
-         <p>¿Ya tienes una cuenta?<a class="link" href="loginvista.html">Iniciar Sesion</a></p>
-     </div>
-    </form>
-<form method="POST">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Registro</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Asap:400,700" rel="stylesheet" type="text/css">
 
-	{{ form.username.help_text }}
-	{{ form.password1 }}
-	{{ form.password1.help_text }}
-	{{ form.password2 }}
-	{{ form.password2.help_text }}
-    {% csrf_token %}
-</form>
+</head>
+<body>
 
 
-<hr />
+<div class="col d-flex justify-content-center align-items-center">
 
-<a href="/login">Iniciar sesión</a>
+        <form method="POST" class="col-8" novalidate>
+            {% csrf_token %}
+            <div class="jumbotron">
+                    <h1 class="mb-3">Registro</h1>
+                <hr class="my-4">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Usuario</span>
+                            </div>
+                              {{ usuario_form.username }}
+                              {{ usuario_form.username.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">{{ usuario_form.password.label }}</span>
+                            </div>
+                              {{ usuario_form.password }}
+                              {{ usuario_form.password.errors }}
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">{{ usuario_form.email.label }}</span>
+                  </div>
+                  {{ usuario_form.email }}
+                  {{ usuario_form.email.errors }}
+                </div>
+                 <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">{{ usuario_form.first_name.label }}</span>
+                  </div>
+                  {{ usuario_form.first_name }}
+                  {{ usuario_form.first_name.errors }}
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">{{ usuario_form.last_name.label }}</span>
+                  </div>
+                  {{ usuario_form.last_name }}
+                  {{ usuario_form.last_name.errors }}
+                </div>
+                <label for="basic-url"></label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">DNI</span>
+                  </div>
+                           {{ usuario_form.dni }}
+                 </div>
+                          {{ usuario_form.dni.errors }}
+
+                <label for="basic-url">{{ usuario_form.instagram.label }}</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">Fecha de Nacimiento</span>
+                  </div>
+                    {{ usuario_form.fecha_nac }}
+                  
+                </div>
+                {{ usuario_form.fecha_nac.errors }}
+                <div class="mb-3">
+                    <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+                    <p>¿Ya tienes una cuenta?<a class="link" href="loginvista.html"> Iniciar Sesion</a></p>
+                </div>
+            <input type="submit" class="btn btn-info" value="Registrar">
+            
+        </form>
+        {{ form.as_p }}
+    </div>
+
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>>

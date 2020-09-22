@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from .forms import UsuarioForm
 from django.contrib.auth import logout as do_logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -23,6 +24,16 @@ def registrar(request):
 				return redirect('/')
 
 	return render(request, 'registrar.html', {'form' : form})
+
+def crearUsuario(request):
+    if request.method == 'POST': #Para registrarse
+        usuario_form = UsuarioForm(request.POST)
+        if usuario_form .is_valid():
+            usuario_form.save()
+            return redirect('/login') #En index debe ir el template que permita crear post, desloguarte, etc.
+    else:
+        usuario_form = UsuarioForm()
+    return render(request, 'registrar.html',{'usuario_form':usuario_form})
 
 def login(request):
 	form = AuthenticationForm()

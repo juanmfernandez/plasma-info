@@ -25,7 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('proyectoinfo.apps.blog.urls')),
     path('bienvenido/', views.bienvenido),
-    path('registrar/', views.registrar),
+    path('registrar/', views.crearUsuario),
+    #path('registrar/', views.registrar),    
     path('login/', views.login),
     path('logout/', views.logout),
 ] + static(base.STATIC_URL, document_root=base.STATIC_ROOT)
