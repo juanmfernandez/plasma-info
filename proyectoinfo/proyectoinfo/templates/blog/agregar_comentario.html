@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title> {% block titulo %} Home - Donadores de Plasma {% endblock titulo %}</title>
+
+  <!-- Custom styles for this template -->
+
+  <link href="{% static 'css/blog-home.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body class="bodyblog">
+    <h1>Nuevo comentario</h1>
+<div class="card my-4">
+          <h5 class="card-header">Escribe un comentario:</h5>
+          <div class="card-body">
+            <form method="POST" >
+              {% csrf_token %}
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">{{ form.autor.label }}</label>
+                </div>
+                  {{ form.autor }}
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">{{ form.contenido.label }}</span>
+                </div>
+                  {{ form.contenido }}
+              </div>
+              <button type="submit" class="btn btn-primary">Enviar comentario</button>
+            </form>
+          </div>
+</div>
+
+

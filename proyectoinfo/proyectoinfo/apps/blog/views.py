@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
-from .forms import AutorForm
-from .models import Post,Categoria
+from .forms import AutorForm, ComentarioForm
+from .models import Post,Categoria, Comentario
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 
 def blog(request):
     queryset= request.GET.get("buscar")
@@ -100,3 +102,33 @@ def crearAutor(request):
 
 def listar_noticias(request):
 	return render(request, 'lista_noticias.html', {})
+
+
+def agregar_comentario(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    if request.method == "POST":
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            comentario = form.save(commit=False)
+            comentario.post = post
+            comentario.save()
+            return redirect('detallePost', slug=post.slug)
+    else:
+        form = ComentarioForm()
+    return render(request, 'blog/agregar_comentario.html', {'form': form})
+
+@login_required
+def aprobar_comentario(request, pk):
+    comentario = get_object_or_404(Comentario, pk=pk)
+    comentario.approve()
+    #return redirect('detalle', pk=comentario.post.pk)
+    #return redirect('detallePost', slug=post.slug)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', 'detalle/'))
+
+@login_required
+def borrar_comentario(request, pk):
+    comentario = get_object_or_404(Comentario, pk=pk)
+    comentario.delete()
+    #return redirect('detallePost', pk=comentario.post.pk)
+    #return redirect('detallePost', slug=post.slug)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', 'detalle/'))

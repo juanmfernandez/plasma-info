@@ -57,7 +57,8 @@ class Autor(models.Model):
         verbose_name_plural = 'Autores'
 
     def __str__(self):
-        return "{0} - {1} - {2} - {3}".format(self.apellidos, self.nombres, self.fecha_union, self.donante)
+        #return "{0} - {1} - {2} - {3}".format(self.apellidos, self.nombres, self.fecha_union, self.donante)
+        return "{0}, {1}".format(self.apellidos, self.nombres)
         
 
 #Los post que se pueden acceder desde home.
@@ -81,15 +82,23 @@ class Post(models.Model):
         return "{0} - {1} - {2} - {3} - {4}".format(self.titulo, self.autor, self.fecha_creacion, self.categoria ,self.verificado)
 
 class Comentario(models.Model):
-    post = models.ForeignKey(Post, on_delete = models.CASCADE)
-    contenido = models.TextField()
+    post = models.ForeignKey(Post, on_delete = models.CASCADE, related_name='comentarios')
+    contenido = models.TextField(max_length=200)
     autor = models.ForeignKey(Autor, on_delete = models.CASCADE)
-    fecha_hora = models.DateTimeField(default = timezone.now)
+    fecha_creacion = models.DateTimeField(default = timezone.now)
+    aprobado = models.BooleanField(default=False)
 
     def __str__(self):
         return self.contenido
 
+    def approve(self):
+        self.aprobado = True
+        self.save()
+
     class Meta:
         verbose_name = ('Comentario')
         verbose_name_plural = ('Comentarios')
+    
+    def comentarios_aprobados(self):
+        return self.comentarios.filter(aprobado=True)
 

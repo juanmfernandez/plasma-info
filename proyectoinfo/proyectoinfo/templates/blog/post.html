@@ -36,6 +36,28 @@
 
         
         <!-- Comments Form -->
+        <p>Comentarios: {{ detallePost.comentarios_aprobados.count }}</p>
+        <a class="btn btn-warning" href="{% url 'agregar_comentario' detallePost.slug %}">Comentar</a>
+          {% for comentario in detallePost.comentarios.all %}
+              {% if user.is_authenticated or comentario.aprobado %}
+              <div class="comentario">
+                  <div class="date">
+                      {{ comentario.fecha_creacion }}
+                      {% if not comentario.aprobado %}
+                          <a href="{% url 'borrar_comentario' pk=comentario.pk %}" class="badge badge-success"><span class="glyphicon glyphicon-remove"></span></a>
+                          <a href="{% url 'aprobar_comentario' pk=comentario.pk %}" class="badge badge-danger"><span class="glyphicon glyphicon-ok"></span></a>
+                      {% endif %}
+                  </div>
+                  <strong>{{ comentario.autor }}</strong>
+                  <p>{{ comentario.contenido|linebreaks }}</p>
+              </div>
+              {% endif %}
+          {% empty %}
+              <p>Nadie ha comentado por aquí :(</p>
+              <a class="btn btn-warning" href="{% url 'agregar_comentario' detallePost.slug %}">Comentar</a>
+          {% endfor %}
+              
+
         {%block comentarios%}
         <div class="card my-4">
           <h5 class="card-header">Leave a Comment:</h5>
@@ -48,7 +70,7 @@
             </form>
           </div>
         </div>
-
+        Hola {{ user.username }}! 
         <!-- Single Comment -->
         <div class="media mb-4">
           <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">

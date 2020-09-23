@@ -1,9 +1,9 @@
 from django.urls import path
 from . import views
-from .views  import blog,informacion,cat_recomendacion,cat_ayuda,cat_experiencia,cat_noticia,cat_consultas,detallePost,crearAutor, listar_noticias
+from .views  import (blog,informacion,cat_recomendacion,cat_ayuda,cat_experiencia,
+    cat_noticia,cat_consultas,detallePost,crearAutor, listar_noticias)
 
 urlpatterns = [
-    
     path('',listar_noticias, name='listar_noticias'),
     path('blog/',blog, name='blog'),
     path('informacion',informacion, name='informacion'),
@@ -17,4 +17,7 @@ urlpatterns = [
     #path('detalle/<slug:pk>', DetalleNoticia.as_view(), name='detalle'),
     path('detalle/<slug:slug>',detallePost, name='detallePost'), #Esta siempre va ultima.
     path('detalle/',blog, name='blog'),
+    path('detalle/<slug:slug>/comentario/', views.agregar_comentario, name='agregar_comentario'),
+    path('comentario/<slug:pk>/aprobar/', views.aprobar_comentario, name='aprobar_comentario'),
+    path('comentario/<slug:pk>/borrar/', views.borrar_comentario, name='borrar_comentario'),
 ]

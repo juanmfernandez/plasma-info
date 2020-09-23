@@ -46,5 +46,7 @@ class PostAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
 admin.site.register(Categoria, CategoriaAdmin)
 admin.site.register(Autor, AutorAdmin)
+admin.site.register(Comentario)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Noticia, NoticiaAdmin)
+

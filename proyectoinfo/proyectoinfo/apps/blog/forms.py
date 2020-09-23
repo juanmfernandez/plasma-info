@@ -1,5 +1,6 @@
 from django import forms
 from .models import Autor
+from .models import Post, Comentario
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 #Realizamos una clase para cada formulario que nosotros querramos simpre que este pertenezca a models.
@@ -24,3 +25,11 @@ class AutorForm(forms.ModelForm):
         self.fields['facebook'].widget.attrs.update({'class': 'form-control', 'id': 'basic-url', 'aria-describedby': 'basic-addon3', 'value': 'facebook.com/'})
         self.fields['instagram'].widget.attrs.update({'class': 'form-control', 'id': 'basic-url', 'aria-describedby': 'basic-addon3', 'value': 'instagram.com/'})
         self.fields['donante'].widget.attrs.update({'value': 'Donante'})
+
+
+class ComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ('autor', 'contenido',)
+
+
