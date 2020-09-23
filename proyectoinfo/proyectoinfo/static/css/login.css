@@ -55,3 +55,9 @@ textarea[readonly] {
 			border-top-right-radius: 3px !important;
 			border-bottom-left-radius: 0 !important;
 }
+
+
+img{
+  max-width: 100% !important;
+  height: auto !important;
+}
