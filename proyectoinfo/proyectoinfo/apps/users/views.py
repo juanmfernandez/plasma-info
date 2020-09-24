@@ -4,7 +4,7 @@ from django.contrib.auth import logout as do_logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login as do_login
-
+from django.contrib import messages
 # Create your views here.
 
 def bienvenido(request):
@@ -22,7 +22,6 @@ def registrar(request):
 			if user is not None:
 				do_login(request, user)
 				return redirect('/')
-
 	return render(request, 'registrar.html', {'form' : form})
 
 def crearUsuario(request):
@@ -30,6 +29,7 @@ def crearUsuario(request):
         usuario_form = UsuarioForm(request.POST)
         if usuario_form .is_valid():
             usuario_form.save()
+            messages.success(request, 'Se ha registrado correctamente.')
             return redirect('/login') #En index debe ir el template que permita crear post, desloguarte, etc.
     else:
         usuario_form = UsuarioForm()

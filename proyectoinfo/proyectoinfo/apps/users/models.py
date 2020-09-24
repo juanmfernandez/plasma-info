@@ -15,4 +15,4 @@ class Usuario(AbstractUser, models.Model):
         verbose_name_plural = "Usuarios"
 
     def __str__(self):
-        return "{} - {} - {} -{}".format(self.username,self.first_name,self.last_name,self.email,self.dni)
+        return "{} - {} - {} -{}".format(self.last_name,self.first_name,self.username,self.email,self.dni)

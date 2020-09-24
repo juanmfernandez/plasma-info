@@ -7,23 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Asap:400,700" rel="stylesheet" type="text/css">
 
 </head>
 <body>
-
-
 <div class="col d-flex justify-content-center align-items-center">
 
-        <form method="POST" class="col-8" novalidate>
+        <form method="POST" class="container" novalidate>
             {% csrf_token %}
-            <div class="jumbotron">
+            <div class="">
                     <h1 class="mb-3">Registro</h1>
                 <hr class="my-4">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
+                   
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Usuario</span>
@@ -31,14 +28,24 @@
                               {{ usuario_form.username }}
                               {{ usuario_form.username.errors }}
                         </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">{{ usuario_form.password1.label }}</span>
+                            </div>
+                              {{ usuario_form.password1 }}
+                              {{ usuario_form.password1.errors }}
+                        </div>
                     </div>
                     <div class="form-group col-md-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">{{ usuario_form.password.label }}</span>
+                                <span class="input-group-text">{{ usuario_form.password2.label }}</span>
                             </div>
-                              {{ usuario_form.password }}
-                              {{ usuario_form.password.errors }}
+                              {{ usuario_form.password2 }}
+                              {{ usuario_form.password2.errors }}
                         </div>
                     </div>
                 </div>
@@ -83,7 +90,7 @@
                 {{ usuario_form.fecha_nac.errors }}
                 <div class="mb-3">
                     <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
-                    <p>¿Ya tienes una cuenta?<a class="link" href="loginvista.html"> Iniciar Sesion</a></p>
+                    <p>¿Ya tienes una cuenta?<a class="link" href="../login"> Iniciar Sesion</a></p>
                 </div>
             <input type="submit" class="btn btn-info" value="Registrar">
             
