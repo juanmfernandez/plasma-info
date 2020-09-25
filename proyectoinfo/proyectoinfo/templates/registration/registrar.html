@@ -1,21 +1,9 @@
+{% extends 'registration/base_registration.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Registro</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Asap:400,700" rel="stylesheet" type="text/css">
+{% block forms %}
 
-</head>
-<body>
 <div class="col d-flex justify-content-center align-items-center">
-
-        <form method="POST" class="container" novalidate>
+        <form method="POST" class="container formulario" novalidate>
             {% csrf_token %}
             <div class="">
                     <h1 class="mb-3">Registro</h1>
@@ -42,7 +30,7 @@
                     <div class="form-group col-md-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">{{ usuario_form.password2.label }}</span>
+                                <span class="input-group-text">Repetir...</span>
                             </div>
                               {{ usuario_form.password2 }}
                               {{ usuario_form.password2.errors }}
@@ -89,17 +77,15 @@
                 </div>
                 {{ usuario_form.fecha_nac.errors }}
                 <div class="mb-3">
-                    <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
-                    <p>¿Ya tienes una cuenta?<a class="link" href="../login"> Iniciar Sesion</a></p>
+                  <input type="submit" class="btn btn-info btn-lg btn-block" value="Registrar">
                 </div>
-            <input type="submit" class="btn btn-info" value="Registrar">
+                <div class="mb-3">
+                  <p class="text-white bg-dark">Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+                  <p class="text-white bg-dark">¿Ya tienes una cuenta?<a class="text-success" href="../login"> Iniciar Sesion</a></p>                 
+                </div>
+           
             
         </form>
-        {{ form.as_p }}
     </div>
 
-  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-</body>
-
-</html>>
+{% endblock %}

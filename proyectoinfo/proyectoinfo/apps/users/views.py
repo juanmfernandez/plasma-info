@@ -9,7 +9,7 @@ from django.contrib import messages
 
 def bienvenido(request):
 	if request.user.is_authenticated:
-		return render(request, 'bienvenido.html')
+		return render(request, 'registration/bienvenido.html')
 	return redirect('/login')
 
 
@@ -22,7 +22,8 @@ def registrar(request):
 			if user is not None:
 				do_login(request, user)
 				return redirect('/')
-	return render(request, 'registrar.html', {'form' : form})
+	return render(request, 'registration/registrar.html', {'form' : form})
+
 
 def crearUsuario(request):
     if request.method == 'POST': #Para registrarse
@@ -33,7 +34,7 @@ def crearUsuario(request):
             return redirect('/login') #En index debe ir el template que permita crear post, desloguarte, etc.
     else:
         usuario_form = UsuarioForm()
-    return render(request, 'registrar.html',{'usuario_form':usuario_form})
+    return render(request, 'registration/registrar.html',{'usuario_form':usuario_form})
 
 def login(request):
 	form = AuthenticationForm()
@@ -47,9 +48,9 @@ def login(request):
 
 			if user is not None:
 				do_login(request, user)
-				return redirect('/bienvenido')
+				return redirect('/')
 
-	return render(request, 'login.html', {'form' : form, 'div_clase' : 'test'},)
+	return render(request, 'registration/login.html', {'form' : form, 'div_clase' : 'test'},)
 
 
 def logout(request):

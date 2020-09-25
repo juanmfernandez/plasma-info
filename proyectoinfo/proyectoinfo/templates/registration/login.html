@@ -1,0 +1,45 @@
+{% extends 'registration/base_registration.html' %}
+
+{% block forms %}
+
+{% if messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {% for message in messages %}
+            <strong>{{ message }}</strong>
+         {% endfor %}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+{% endif %}
+
+
+	<div class={{ div_clase }}></div>
+
+<form method="POST" class="formulario">
+	{% csrf_token %}
+    <h1>Login</h1>
+     <div class="contenedor">
+
+        <div class="input-contenedor">
+        <i class="fas fa-envelope icon"></i>
+	        {{ form.username.errors }}
+	        {{ form.username.label_tag }}
+	        {{ form.username }}
+        </div>
+         
+        <div class="input-contenedor">
+		<i class="fas fa-key icon"></i>
+			{{ form.password.errors }}
+	        {{ form.password.label_tag }}
+        	{{ form.password }}
+        </div>
+        <input type="submit" value="Login" class="button">
+        <div class="mb-3">
+        </br>
+            <p class="text-white bg-dark">¿No tienes una cuenta?<a class="text-success" href="../registrar"> Registrate</a></p> 
+            <p class="text-white bg-dark">¿Olvidaste tu contraseña? <a class="text-danger" href="/reset_password/">Recuperala </a></p>
+        </div>
+     </div>
+    </form>
+{% endblock %}

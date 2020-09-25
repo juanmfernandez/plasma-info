@@ -155,4 +155,17 @@ from django.urls import reverse_lazy
 AUTH_USER_MODEL = "users.Usuario"
 
 LOGIN_URL = reverse_lazy('login')
-LOGIN_REDIRECT_URL = reverse_lazy('lista')
+LOGIN_REDIRECT_URL = reverse_lazy('')
+
+#smtp config
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-plasma-info.alwaysdata.net'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'plasma-info@alwaysdata.net'
+EMAIL_HOST_PASSWORD = 'g4km482r'
+
+
+#Outgoing SMTP server: smtp-plasma-info.alwaysdata.net
+
