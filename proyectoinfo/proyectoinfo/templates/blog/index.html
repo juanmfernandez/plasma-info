@@ -27,7 +27,7 @@
         <span class=""><i class="fas fa-ambulance"></i></span>
       </button>
       <div class="collapse navbar-collapse" id="acolapsar">
-        <ul class="navbar-nav ml-auto">
+        <ul class=" container navbar-nav ml-auto">
           <li class="nav-item active">
             <a class="nav-link" href="../">Inicio
               <span class="sr-only">(current)</span>
@@ -40,9 +40,11 @@
           <li class="">
             <a href="../login" class="nav-link"> Login</a>
           </li>
+          {% if user.is_superuser%}
           <li class="nav-item">
             <a class="nav-link" href="../admin/blog/post/add/">Crear post</a>
           </li>
+          {% endif %}
           <li class="nav-item">
 <<<<<<< HEAD
 
@@ -57,7 +59,6 @@
   <!-- Page Content -->
   {%block contenido%}
   {%block cuerpo%}
-  <div class="contenido">
   <div class="container">
 
     <div class="row">
@@ -168,7 +169,6 @@
     </div>
     <!-- /.row -->
 
-  </div>
   </div>
   {% endblock contenido %}
   <!-- /.container -->
