@@ -10,7 +10,7 @@ class UsuarioForm(UserCreationForm):
     email = forms.EmailField()
     class Meta:
         model = Usuario
-        fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2', 'dni', 'fecha_nac', )
+        fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2', 'dni', 'fecha_nac', 'grupo_sanguineo', 'factor_rh', 'es_donante' )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -19,8 +19,6 @@ class UsuarioForm(UserCreationForm):
         self.helper.add_input(Submit('submit', 'Registrarme'))
         self.fields['username'].widget.attrs.update({'class': 'form-control', 'aria-label': 'Nombre', 'placeholder': 'usuario'})
         self.fields['email'].widget.attrs.update({'class': 'form-control', 'placeholder': 'nn@mail.com'})
-        #self.fields['password1'] = forms.CharField(max_length=20, widget=forms.PasswordInput())
-        #self.fields['password2'] = forms.CharField(max_length=20, widget=forms.PasswordInput())
         self.fields['password1'].widget.attrs.update({'class': 'form-control', 'type': 'password', 'placeholder': 'contraseña'})
         self.fields['password2'].widget.attrs.update({'class': 'form-control', 'type': 'password', 'placeholder': 'repetir contraseña'})
         self.fields['first_name'].widget.attrs.update({'class': 'form-control', 'aria-label': 'Nombre', 'placeholder': 'Nombre'})
