@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from .forms import AutorForm, ComentarioForm
 from .models import Post,Categoria, Comentario
+from ..centros.models import EnableCenter
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.views.generic.list import ListView
 
 def blog(request):
     queryset= request.GET.get("buscar")
@@ -100,8 +102,10 @@ def crearAutor(request):
     return render(request, 'blog/registrarvista.html',{'autor_form':autor_form})
 # Create your views here.
 
-def home(request):
-	return render(request, 'home.html', {})
+class home(ListView):
+    model = EnableCenter
+    template_name = 'home.html'
+    context_object_name = 'lugares'
 
 
 def agregar_comentario(request, slug):
