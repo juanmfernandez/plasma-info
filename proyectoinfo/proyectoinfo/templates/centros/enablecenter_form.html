@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+{{form.media}}
+<div class="d-flex justify-content-center align-items-center ">
+	<form method="post" novalidate>
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-6">
+				{{form.name|as_crispy_field}}
+			</div>
+			<div class="col-6">
+				{{form.mail|as_crispy_field}}
+			</div>
+		</div>
+		{{form.phone_num|as_crispy_field}}
+		{{form.location|as_crispy_field}}
+		{{form.address|as_crispy_field}}
+		{{form.business_hours|as_crispy_field}}
+	    <input type="submit" class="btn btn-info" value="Guardar">
+	</form>
+</div>
+{% endblock %}

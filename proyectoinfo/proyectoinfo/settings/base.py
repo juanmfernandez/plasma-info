@@ -28,7 +28,7 @@ SECRET_KEY = 'nqe!1!xv1f59(an+1d70)8ql^x4zp3j(3370g*^0+s)bib&yvv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['plasma-info.alwaysdata.net', 'localhost',]
+ALLOWED_HOSTS = ['plasma-info.alwaysdata.net', 'localhost', '*']
 
 
 # Application definition
@@ -47,7 +47,16 @@ INSTALLED_APPS = [
     'crispy_forms',
     'import_export',
     'ckeditor',
+    'location_field.apps.DefaultConfig',
 ]
+
+LOCATION_FIELD = {
+    'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
+    'provider.google.api_key': 'AIzaSyCNxnKZiPG95WmAcgEC1B4wZKw5IMwoi6g',
+    'provider.google.api_libraries': '',
+    'provider.google.map.type': 'ROADMAP',
+    'map.zoom': 1,
+}
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

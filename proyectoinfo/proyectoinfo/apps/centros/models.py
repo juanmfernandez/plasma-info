@@ -1,15 +1,12 @@
 from django.db import models
+from django.utils import timezone
+from location_field.models.plain import PlainLocationField
 
 
-class CentroHabilitado(models.Model):
-    nombre = models.CharField(max_length=50)
-    mail = models.CharField(max_length=50)
-    nro_tel = models.IntegerField()
-    direccion = models.CharField(max_length=50)
-    ciudad = models.CharField(max_length=50, blank=True, null=True, default = 'Resistencia')
-    #direccion = GeopositionField()
-    horario_aten = models.CharField(max_length=50)
-
-    class Meta:
-        verbose_name = ("CentroHabilitado")
-        verbose_name_plural = ("CentrosHabilitados")
+class EnableCenter(models.Model):
+    name = models.CharField(max_length=200)
+    mail = models.CharField(max_length=200)
+    phone_num = models.IntegerField()
+    address = models.CharField(max_length=200)
+    location = PlainLocationField(based_fields=['city'], zoom=7)
+    business_hours = models.CharField(max_length=200)
