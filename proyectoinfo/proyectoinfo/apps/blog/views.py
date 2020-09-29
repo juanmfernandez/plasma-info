@@ -100,8 +100,8 @@ def crearAutor(request):
     return render(request, 'blog/registrarvista.html',{'autor_form':autor_form})
 # Create your views here.
 
-def listar_noticias(request):
-	return render(request, 'lista_noticias.html', {})
+def home(request):
+	return render(request, 'home.html', {})
 
 
 def agregar_comentario(request, slug):

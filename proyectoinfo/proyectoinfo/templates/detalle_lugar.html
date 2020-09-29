@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script type="text/javascript">
+  "use strict";
+  function initMap() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 14,
+      center: {
+        lat: -27.4511588,
+        lng: -58.986507
+      },
+    });
+    let myLatLng;
+    myLatLng = new google.maps.LatLng({{ object.location }})
+  new google.maps.Marker({
+    position: myLatLng,
+    map,
+    title: "{{object.name}}",
+  });
+    
+  }
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNxnKZiPG95WmAcgEC1B4wZKw5IMwoi6g&callback=initMap&libraries=&v=weekly"
+  defer></script>
+
+<h1>{{ object.name }}</h1>
+<h1>{{ object.mail }}</h1>
+<h1>{{ object.phone_num }}</h1>
+<div id="iframe-contents">
+  <div id="map"></div>
+</div>
+<h1>{{ object.address }}</h1>
+<h1>{{ object.business_hours }}</h1>
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+  Eliminar
+</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar centro</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Estas seguro que desea eliminar la noticia <strong>{{object.name}}</strong>?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form action="{% url 'delete_center' object.id %}" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
