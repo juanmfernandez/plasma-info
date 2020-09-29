@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import registrar_centro, mapa
+from . import views
 
 urlpatterns = [
   path('lugares/', views.Centers.as_view(), name='lugares'),

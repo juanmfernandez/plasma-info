@@ -35,4 +35,4 @@ class CenterUpdate(UpdateView):
     model = EnableCenter
     form_class = EnableCenterForm
     template_name = 'prueba/center_update.html'
-    success_url = '/'render(request, 'mapa.html')
+    success_url = '/'
