@@ -6,7 +6,7 @@
         <form method="POST" class="container formulario" novalidate>
             {% csrf_token %}
             <div class="">
-                    <h1 class="mb-3">Registro usuario y/o Donante</h1>
+                    <h1 class="mb-3">Registro de Usuario y/o Donante</h1>
                 <hr class="my-4">
                    
                         <div class="input-group mb-3">
@@ -72,43 +72,47 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon3">Fecha de Nacimiento</span>
                   </div>
-                    {{ usuario_form.fecha_nac }}
-                  
+                    {{ usuario_form.fecha_nac }}                  
                 </div>
                 {{ usuario_form.fecha_nac.errors }}
 
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">{{ usuario_form.grupo_sanguineo.label }}</span>
+                <div class="form-row">
+                  <div class="form-group col-md-2">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">{{ usuario_form.grupo_sanguineo.label }}</span>
+                      </div>
+                       <select class="custom-select" name="grupo_sanguineo" id="inputGroupSelect01">
+                        <option selected>Seleccione...</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="AB">AB</option>
+                        <option value="0">0</option>
+                      </select>
+                      {# usuario_form.grupo_sanguineo es reemplazado para mejor control del estilo css #}
+                      {{ usuario_form.grupo_sanguineo.errors }}
+                    </div>
                   </div>
-                   <select class="custom-select" name="grupo_sanguineo" id="inputGroupSelect01">
-                    <option selected>Seleccione...</option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="AB">AB</option>
-                    <option value="0">0</option>
-                  </select>
-                  {# usuario_form.grupo_sanguineo es reemplazado para mejor control del estilo css #}
-                  {{ usuario_form.grupo_sanguineo.errors }}
-                </div>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">{{ usuario_form.factor_rh.label }}</span>
+                  <div class="form-group col-md-6">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">{{ usuario_form.factor_rh.label }}</span>
+                      </div>
+
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="factor_rh" id="option2" value="+"> +
+                      </label>
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="factor_rh" id="option3" value="-"> -
+                      </label>
+                    </div>
+
+                      {{ usuario_form.factor_rh3 }}
+                      {{ usuario_form.factor_rh.errors }}
+                    </div>
                   </div>
-
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-secondary">
-                    <input type="radio" name="options" id="option2"> +
-                  </label>
-                  <label class="btn btn-secondary">
-                    <input type="radio" name="options" id="option3"> -
-                  </label>
                 </div>
-
-                  {{ usuario_form.factor_rh }}
-                  {{ usuario_form.factor_rh.errors }}
-                </div>
-
 
                 <div class="col-auto my-1 mb-3">
                   <div class="custom-control custom-checkbox mr-sm-2 custom-switch">
