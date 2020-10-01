@@ -34,78 +34,46 @@
 
         <hr>
 
-        
-        <!-- Comments Form -->
-        <p>Comentarios: {{ detallePost.comentarios_aprobados.count }}</p>
-        <a class="btn btn-warning" href="{% url 'agregar_comentario' detallePost.slug %}">Comentar</a>
+        {%block comentarios%}
+        {% if user.is_authenticated %}
+          <div class="card my-4">
+            <h5 class="card-header">Hola {{ user.username }}!, dejá un comentario:</h5>
+            <div class="card-body">
+              <form action="{% url 'agregar_comentario' detallePost.slug %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="autor" value="{{ user.username }}">
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" name="contenido"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Comentar</button>
+              </form>
+            </div>
+          </div>
+        {% else %}
+          <a class="btn btn-warning" href="{% url 'agregar_comentario' detallePost.slug %}">Comentar</a>
+        {% endif %}
+
+        <!-- Single Comment -->
           {% for comentario in detallePost.comentarios.all %}
               {% if user.is_authenticated or comentario.aprobado %}
-              <div class="comentario">
-                  <div class="date">
-                      {{ comentario.fecha_creacion }}
+              <hr>
+                    <div class="media mb-4">
+                      <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                      <div class="media-body">
+                        <h5 class="mt-0">{{ comentario.autor }}</h5><p>{{ comentario.fecha_creacion }}</p>
+
+                        {{ comentario.contenido|linebreaks }}
+                      </div>
                       {% if not comentario.aprobado %}
-                          <a href="{% url 'borrar_comentario' pk=comentario.pk %}" class="badge badge-success"><span class="glyphicon glyphicon-remove"></span></a>
-                          <a href="{% url 'aprobar_comentario' pk=comentario.pk %}" class="badge badge-danger"><span class="glyphicon glyphicon-ok"></span></a>
+                          <a href="{% url 'borrar_comentario' pk=comentario.pk %}" class="badge badge-danger"><span class="glyphicon glyphicon-remove">Borrar</span></a>
+                          <a href="{% url 'aprobar_comentario' pk=comentario.pk %}" class="badge badge-success"><span class="glyphicon glyphicon-ok">Aprobar</span></a>
                       {% endif %}
-                  </div>
-                  <strong>{{ comentario.autor }}</strong>
-                  <p>{{ comentario.contenido|linebreaks }}</p>
-              </div>
+                    </div>                      
               {% endif %}
           {% empty %}
               <p>Nadie ha comentado por aquí :(</p>
               <a class="btn btn-warning" href="{% url 'agregar_comentario' detallePost.slug %}">Comentar</a>
           {% endfor %}
-              
-
-        {%block comentarios%}
-        
-        <div class="card my-4">
-          <h5 class="card-header">Leave a Comment:</h5>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-        </div>
-        Hola {{ user.username }}! 
-        <!-- Single Comment -->
-        <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-          </div>
-        </div>
-        
-        <!-- Comment with nested comments -->
-        <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-            <div class="media mt-4">
-              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
-
-            <div class="media mt-4">
-              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
-
-          </div>
-        </div>
 
       </div>
       {%endblock comentarios%}
@@ -169,7 +137,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+      <p class="m-0 text-center text-white">Copyright &copy; Donantes de Plasma </p>
     </div>
     <!-- /.container -->
   </footer>
