@@ -29,6 +29,16 @@ img{
  * Custom translucent site header
  */
 
+.logo {
+    height: 80px;
+    width: 5rem;
+    padding-bottom: 5px;
+}
+
+.pt-2, .py-2 {
+    padding-top: 1.5rem!important;
+}
+
 .site-header {
   background-color: #A89F34;
   -webkit-backdrop-filter: saturate(180%) blur(20px);
