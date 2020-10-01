@@ -20,6 +20,9 @@ img{
   height: 100%;
 }
 
+.bg-login{
+  background-image: url(../img/img1.jpg);
+}
 
 .nobefore::before {
     padding-top: 1% !important;
