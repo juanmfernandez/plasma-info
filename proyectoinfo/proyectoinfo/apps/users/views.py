@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login as do_login
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 def bienvenido(request):
@@ -48,7 +49,10 @@ def login(request):
 
 			if user is not None:
 				do_login(request, user)
+				if request.GET.get('next'):
+					return redirect(request.GET.get('next'))
 				return redirect('/')
+				#return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 	return render(request, 'registration/login.html', {'form' : form, 'div_clase' : 'test'},)
 

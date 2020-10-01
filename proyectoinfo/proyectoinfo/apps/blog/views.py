@@ -91,6 +91,7 @@ def detallePost(request,slug):
         return render(request,'blog/post.html',{'detallePost':post})
     else:
         return render(request, 'blog/index.html',{'post':post})
+
 def crearAutor(request):
     if request.method == 'POST': #Para registrarse
         autor_form = AutorForm(request.POST)
@@ -108,6 +109,7 @@ class home(ListView):
     context_object_name = 'lugares'
 
 
+@login_required(login_url='login')
 def agregar_comentario(request, slug):
     post = get_object_or_404(Post, slug=slug)
     if request.method == "POST":
@@ -121,7 +123,7 @@ def agregar_comentario(request, slug):
         form = ComentarioForm()
     return render(request, 'blog/agregar_comentario.html', {'form': form})
 
-@login_required
+@login_required(login_url='login')
 def aprobar_comentario(request, pk):
     comentario = get_object_or_404(Comentario, pk=pk)
     comentario.approve()
@@ -129,10 +131,11 @@ def aprobar_comentario(request, pk):
     #return redirect('detallePost', slug=post.slug)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', 'detalle/'))
 
-@login_required
+@login_required(login_url='login')
 def borrar_comentario(request, pk):
     comentario = get_object_or_404(Comentario, pk=pk)
     comentario.delete()
     #return redirect('detallePost', pk=comentario.post.pk)
     #return redirect('detallePost', slug=post.slug)
+    #return HttpResponseRedirect(request.META.get('HTTP_REFERER', 'detalle/'))
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', 'detalle/'))
