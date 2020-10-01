@@ -1,10 +1,11 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import login
+from .views import login, ListarDonantes
 
 urlpatterns = [
 	#path('login/', auth_views.LoginView.as_view(), {'template_name':"registration/login.html"}, name='login'),
-	path('logout/',  auth_views.logout_then_login, name='logout'),
+	#path('logout/',  auth_views.logout_then_login, name='logout'),	
+	path('lista_donantes/', ListarDonantes.as_view(), name='lista_donantes'),
 	#"""
 	#path('accounts/', include('django.contrib.auth.urls')),
 	#path('password_change/', password_change [name='password_change'])

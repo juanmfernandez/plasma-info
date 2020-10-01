@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block content %}	
+	<div class="container">
+		<h1>Lista de donantes</h1>
+		{% for donante in donantes %}
+			<p>
+				{# donante.first_name #}
+				{# donante.last_name #}
+				{{ donante.username }}
+				{{ donante.fecha_nac }}
+				{{ donante.grupo_sanguineo }}
+				{{ donante.factor_rh }}
+				{{ donante.dni }}
+			</p>
+		{% endfor %}
+	</div>
+{% endblock %}
