@@ -24,11 +24,18 @@
 	<nav class="site-header sticky-top py-1">
 		<div class="container d-flex flex-column flex-md-row justify-content-between">
 			<img class="logo" src="/static/img/logo.png">
-			<a class="py-2 d-none d-md-inline-block" href="{% url 'home'%}">Juntos contra el covid</a>
+			<a class="py-2 d-none d-md-inline-block" href="{% url 'home'%}">Web Donantes</a>
 			<a class="py-2 d-none d-md-inline-block" href="{% url 'lugares' %}">¿Donde puedo donar?</a>
-			<a class="py-2 d-none d-md-inline-block" href="">Donantes de plasta</a>
+			<a class="py-2 d-none d-md-inline-block" href="{% url 'lista_donantes' %}">Donantes</a>
 			<a class="py-2 d-none d-md-inline-block" href="">¿Quienes somos?</a>
 			<a class="py-2 d-none d-md-inline-block" href="{% url 'blog' %}">Blog</a>
+			{% if user.is_authenticated %}
+					<a href="" class="py-2 d-none d-md-inline-block"><span class=""></span>Hola {{ user.username }}!</a>
+					<a href="{% url 'logout' %}" class="py-2 d-none d-md-inline-block">Cerrar sesion</a>
+                {% else %}
+                	<a href="{% url 'registrar' %}" class="py-2 d-none d-md-inline-block"> Registrate</a>
+                	<a href="{% url 'login' %}" class="py-2 d-none d-md-inline-block"> Login</a>
+            {% endif %}
 			<a class="py-2 d-none d-md-inline-block" href=""><i class="fas fa-ambulance"></i></a>
 		</div>
 	</nav>
