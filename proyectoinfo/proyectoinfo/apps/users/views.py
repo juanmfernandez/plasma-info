@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect
 from .forms import UsuarioForm
+from .models import Usuario
+from django.views.generic.list import ListView
 from django.contrib.auth import logout as do_logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login as do_login
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators  import login_required
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+
 # Create your views here.
 
 def bienvenido(request):
@@ -60,3 +65,13 @@ def login(request):
 def logout(request):
 	do_logout(request)
 	return redirect('/')
+
+class ListarDonantes(LoginRequiredMixin, ListView):
+	login_url = 'login'
+	model = Usuario
+	template_name = 'users/lista_donantes.html'
+	context_object_name = "donantes"
+	
+	def get_queryset(self):
+		donantes = Usuario.objects.all().filter(es_donante=True)
+		return donantes

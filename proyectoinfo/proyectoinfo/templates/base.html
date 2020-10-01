@@ -21,7 +21,8 @@
 </head>
 
 <body>
-	<nav class="site-header sticky-top py-1 navbar navbar-expand-lg">
+<<<<<<< HEAD
+	<nav class="site-header sticky-top py-1 navbar navbar-expand-xl">
 		<button class="navbar-toggler col-12" type="button" data-toggle="collapse" data-target="#acolapsar"
 			aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			{% load static %}
@@ -38,17 +39,26 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'lugares' %}">¿Donde puedo donar?</a>
 				</li>
+				{% if user.is_authenticated %}
 				<li class="nav-item">
-					<a class="nav-link" href="">Donantes de plasta</a>
+					<a href="" class="nav-link"><span class=""></span>Hola {{ user.username }}!</a>
 				</li>
+				<li class="nav-item">
+					<a href="{% url 'logout' %}" class="nav-link">Cerrar sesion</a>
+				</li>
+				{% else %}
+				<li class="nav-item">
+					<a href="{% url 'registrar' %}" class="nav-link"> Registrate</a>
+				</li>
+				<li class="nav-item">
+					<a href="{% url 'login' %}" class="nav-link"> Login</a>
+				</li>
+				{% endif %}
 				<li class="nav-item">
 					<a class="nav-link" href="">¿Quienes somos?</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'blog' %}">Blog</a>
-				</li>
-				<li class="nav-item">
-					<a href="{% url 'login' %}" class="nav-link"> Login</a>
 				</li>
 			</ul>
 		</div>
