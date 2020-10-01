@@ -20,6 +20,11 @@ img{
   height: 100%;
 }
 
+
+.nobefore::before {
+    padding-top: 1% !important;
+}
+
 /*
  * Custom translucent site header
  */
