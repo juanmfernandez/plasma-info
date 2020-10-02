@@ -109,6 +109,10 @@ class home(ListView):
     context_object_name = 'lugares'
 
 
+def quienes_somos(request):
+    return render(request, 'quienes_somos.html')
+
+
 @login_required(login_url='login')
 def agregar_comentario(request, slug):
     post = get_object_or_404(Post, slug=slug)

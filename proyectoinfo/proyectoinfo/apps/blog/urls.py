@@ -5,6 +5,7 @@ from .views  import (blog,informacion,cat_recomendacion,cat_ayuda,cat_experienci
 
 urlpatterns = [
     path('',views.home.as_view(), name='home'),
+    path('quienes_somos/', views.quienes_somos, name='quienes_somos'),
     path('blog/',blog, name='blog'),
     path('informacion',informacion, name='informacion'),
     path('crear_autor',crearAutor,name='crear_autor'),
