@@ -12,6 +12,16 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+# django-decouple ayuda con la protección de datos sensibles
+# DEBUG, SECRET_KEY, ALLOWED_HOSTS, EMAIL y DB serán manejados por decouple
+# https://studygyaan.com/django/how-to-protect-sensitive-data-in-django
+# https://pypi.org/project/python-decouple/
+from decouple import config
+
+if config('DEBUG') == 'True':
+    print('Estas en desarrollo')
+else:
+    print('Estas en producción')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 #BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -23,12 +33,12 @@ print('BASE_DIR: ', BASE_DIR)
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'nqe!1!xv1f59(an+1d70)8ql^x4zp3j(3370g*^0+s)bib&yvv'
+SECRET_KEY = config('SECRET_KEY') 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = ['plasma-info.alwaysdata.net', 'localhost', '*']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -52,7 +62,7 @@ INSTALLED_APPS = [
 
 LOCATION_FIELD = {
     'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
-    'provider.google.api_key': 'AIzaSyCNxnKZiPG95WmAcgEC1B4wZKw5IMwoi6g',
+    'provider.google.api_key': config('GOOGLE_API_KEY') ,
     'provider.google.api_libraries': '',
     'provider.google.map.type': 'ROADMAP',
     'map.zoom': 1,
@@ -166,7 +176,11 @@ AUTH_USER_MODEL = "users.Usuario"
 LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = reverse_lazy('')
 
-#smtp config
-
-#Outgoing SMTP server: smtp-plasma-info.alwaysdata.net
-
+#smtp config en producción
+if config('DEBUG') == 'False':
+    EMAIL_BACKEND = config('EMAIL_BACKEND')
+    EMAIL_HOST = config('EMAIL_HOST')
+    EMAIL_PORT = config('EMAIL_PORT')
+    EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+    EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
